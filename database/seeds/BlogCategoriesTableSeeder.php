@@ -16,14 +16,18 @@ class BlogCategoriesTableSeeder extends Seeder
 
         $name = 'Без категории';
 
+        $dataTime = date('Y-m-d H:i:s');
+
         $categories[] = [
-            'title'     => $name,
-            'slug'      => str_slug($name),
-            'parent_id' => 0,
+            'title'      => $name,
+            'slug'       => str_slug($name),
+            'parent_id'  => 0,
+            'created_at' => $dataTime,
+            'updated_at' => $dataTime,
         ];
 
         for ($i = 1; $i <= 10; $i++) {
-            $name = 'Категория #' . $i;
+            $name = 'Категория #' . ($i + 1);
 
             $parentId = ($i > 3) ? ($i > 6) ? mt_rand(1, 6) : mt_rand(1, 3) : 1;
 
@@ -31,6 +35,8 @@ class BlogCategoriesTableSeeder extends Seeder
                 'title'     => $name,
                 'slug'      => str_slug($name),
                 'parent_id' => $parentId,
+                'created_at' => $dataTime,
+                'updated_at' => $dataTime,
             ];
         }
 
