@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="title">Заголовок</label>
                             <input name="title"
-                                   value="{{ $item->title }}"
+                                   value="{{ old('title', $item->title) }}"
                                    id="title"
                                    type="text"
                                    class="form-control"
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label for="slug">Идентификатор</label>
                             <input name="slug"
-                                   value="{{ $item->slug }}"
+                                   value="{{ old('slug', $item->slug) }}"
                                    id="slug"
                                    type="text"
                                    class="form-control"
@@ -45,7 +45,7 @@
                                     required>
                                 @foreach($categoryList as $categoryOption)
                                     <option value="{{ $categoryOption->id }}"
-                                            @if ($categoryOption->id==$item->parent_id) selected @endif>
+                                            @if ($categoryOption->id == old('parent_id', $item->parent_id)) selected @endif>
                                         {{ $categoryOption->id }}. {{ $categoryOption->title }}
                                     </option>
                                 @endforeach
@@ -57,8 +57,7 @@
                             <textarea name="description"
                                       id="description"
                                       class="form-control"
-                                      rows="3">
-                                {{ $item->description }}
+                                      rows="3">{{ old('description', $item->description) }}
                             </textarea>
                         </div>
 
