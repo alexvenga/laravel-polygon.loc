@@ -33,8 +33,7 @@
                                    value="{{ old('slug', $item->slug) }}"
                                    id="slug"
                                    type="text"
-                                   class="form-control"
-                                   required>
+                                   class="form-control">
                         </div>
 
                         <div class="form-group">
