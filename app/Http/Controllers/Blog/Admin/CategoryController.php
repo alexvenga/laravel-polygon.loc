@@ -13,6 +13,19 @@ use App\Repositories\BlogCategoryRepository;
  */
 class CategoryController extends BaseController
 {
+
+    /**
+     * @var BlogCategoryRepository
+     */
+    private $blogCategoryRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +33,9 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $paginator = BlogCategory::paginate(20);
+        //$paginator = BlogCategory::paginate(20);
+
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(15);
 
         return view('blog.admin.categories.index', compact('paginator'));
 
@@ -34,7 +49,7 @@ class CategoryController extends BaseController
     public function create()
     {
         $item = new BlogCategory();
-        $categoryList = BlogCategory::all();
+        $categoryList = $this->blogCategoryRepository->getForCombobox();
 
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }

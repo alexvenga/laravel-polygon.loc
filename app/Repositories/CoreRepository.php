@@ -33,7 +33,7 @@ abstract class CoreRepository
     abstract protected function getModelClass();
 
     /**
-     * @return Model|Illuminate\Foundation\Application|mixed
+     * @return Model
      */
     public function startConditions()
     {
