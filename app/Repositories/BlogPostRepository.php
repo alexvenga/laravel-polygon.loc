@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Models\BlogPost as Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Class BlogPostRepository
@@ -19,6 +20,35 @@ class BlogPostRepository extends CoreRepository
     protected function getModelClass()
     {
         return Model::class;
+    }
+
+    /**
+     * @param  int|null  $count
+     * @return LengthAwarePaginator
+     */
+    public function getAllWithPaginate($count = null)
+    {
+
+        $columns = [
+            'id',
+            'title',
+            'slug',
+            'is_published',
+            'published_at',
+            'user_id',
+            'category_id',
+        ];
+
+        $result = $this
+            ->startConditions()
+            ->select($columns)
+            ->orderBy('id', 'DESC')
+            ->paginate($count);
+
+        //dd($result);
+
+        return $result;
+
     }
 
 
