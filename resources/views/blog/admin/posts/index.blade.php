@@ -26,10 +26,10 @@
                                     {{ $post->id }}
                                 </td>
                                 <td>
-                                    {{ $post->user_id }}
+                                    {{ $post->user->name }}
                                 </td>
                                 <td>
-                                    {{ $post->category_id }}
+                                    {{ $post->category->title }}
                                 </td>
                                 <td>
                                     <a href="{{ route('blog.admin.posts.edit', $post->id) }}">{{ $post->title }}</a>
